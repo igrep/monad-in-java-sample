@@ -1,5 +1,7 @@
 package info.igreque.the.monadinjava;
 
+import java.util.function.Function;
+
 public class MonadLaw {
     public static void main(String[] args){
         // 任意の型X, Y, Zの値をx, y, zとします。
@@ -48,7 +50,7 @@ public class MonadLaw {
             this.value = value;
         }
 
-        <T2> Monad<T2> then(Function<T1, Monad<T2>> action){
+        <T2> Monad<T2> then(Function<T, SomeMonad<T2>> action){
             return action.apply(this.value);
         }
     }
