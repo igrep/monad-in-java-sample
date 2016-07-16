@@ -22,15 +22,14 @@ class State<S, T1> implements Monad<T1> {
   // ないと困る、ユーティリティメソッド。引数で与えた状態に書き換える
   public static <S> State<S, Object> put(S newState){
     return new State(
-        (ignoredState) -> new MutationResult(newState, null)
-        );
+      (ignoredState) -> new MutationResult(newState, null)
+    );
   }
 
   // ないと困る、ユーティリティメソッド。現在の状態を取得する
   public static <S> State<S, S> get(){
     return new State(
-        (currentState) -> new MutationResult(currentState, currentState)
-        );
+      (currentState) -> new MutationResult(currentState, currentState)
+    );
   }
 }
-
