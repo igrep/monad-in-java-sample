@@ -2,20 +2,24 @@ package info.igreque.the.monadinjava;
 
 import java.util.function.Function;
 
+/**
+ * NOTE: This file can't be compiled!
+ */
+
 public class MonadLaw {
     public static void main(String[] args){
         // 任意の型X, Y, Zの値をx, y, zとします。
-        X x;
-        Y y;
-        Z z;
+        X x = null;
+        Y y = null;
+        Z z = null;
 
         // MonadFactoryをfとします
-        MonadFactory<X> f = new SomeMonadFactory<>();
+        MonadFactory f = new SomeMonadFactory();
 
         // それから、Xを受け取って別のMonadの値を返す関数をax, ay, azとしましょう。
-        Function<X, Monad<Y>> ax = (x) -> new SomeMonad<Y>(y);
-        Function<Y, Monad<Z>> ay = (y) -> new SomeMonad<Z>(z);
-        Function<Z, Monad<A>> az = (z) -> new SomeMonad<A>(new A());
+        Function<X, Monad<Y>> ax = (x) -> new SomeMonad<>(y);
+        Function<Y, Monad<Z>> ay = (y) -> new SomeMonad<>(z);
+        Function<Z, Monad<A>> az = (z) -> new SomeMonad<>(new A());
 
 
         // 下記の3組の式が**常に同じ意味となる**doNothingReturningとthenを
@@ -50,13 +54,13 @@ public class MonadLaw {
             this.value = value;
         }
 
-        <T2> Monad<T2> then(Function<T, SomeMonad<T2>> action){
+        public <T2> Monad<T2> then(Function<T, Monad<T2>> action){
             return action.apply(this.value);
         }
     }
     private static class SomeMonadFactory implements MonadFactory {
         SomeMonadFactory(){}
-        <T> Monad<T> doNothingReturning(T value){
+        public <T> Monad<T> doNothingReturning(T value){
             return new SomeMonad<T>(value);
         }
     }

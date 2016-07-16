@@ -1,7 +1,7 @@
 package info.igreque.the.monadinjava;
 
 // 状態を書き換えた結果を表すValue Object
-class MutationResult<S, T> {
+class MutationResult<T, S> {
     public final S newState;
     public final T value;
 
