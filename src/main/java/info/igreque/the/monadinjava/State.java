@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 // Stateモナドの実装
 class State<S, T1> implements Monad<T1> {
-  private final StateMutator<T1, S> mutator;
+  public final StateMutator<T1, S> mutator;
 
   State(StateMutator<T1, S> mutator){
     this.mutator = mutator;
