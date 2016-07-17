@@ -9,6 +9,8 @@ class Maybe<T1> implements Monad<T1> {
     this.x = x;
   }
 
+  // 本当は↓のような型にしたい
+  // public <T2> Maybe<T2> then(Function<T1, Maybe<T2>> nextAction)
   public <T2> Monad<T2> then(Function<T1, Monad<T2>> nextAction){
     if (x != null){
       return nextAction.apply(x);

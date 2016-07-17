@@ -10,9 +10,12 @@ class State<S, T1> implements Monad<T1> {
     this.mutator = mutator;
   }
 
+  // 本当は↓のような型にしたい
+  // public <T2> State<S, T2> then(Function<T1, State<S, T2>> nextAction)
   public <T2> Monad<T2> then(Function<T1, Monad<T2>> nextAction){
     StateMutator<T2, S> composedMutator = (S s) -> {
       MutationResult<T1, S> result = this.mutator.mutate(s);
+      // 本当はダウンキャストなんてしたくない
       State<S, T2> other = (State) nextAction.apply(result.value);
       return other.mutator.mutate(result.newState);
     };
