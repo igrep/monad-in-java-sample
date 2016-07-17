@@ -15,7 +15,7 @@ class Maybe<T1> implements Monad<T1> {
     if (x != null){
       return nextAction.apply(x);
     } else {
-      return new Maybe(null);
+      return new Maybe<>(null);
     }
   }
 }
