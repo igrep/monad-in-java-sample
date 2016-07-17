@@ -18,4 +18,12 @@ class Maybe<T1> implements Monad<T1> {
       return new Maybe<>(null);
     }
   }
+
+  public String toString(){
+    if (x == null) {
+      return "Nothing";
+    } else {
+      return "Just: " + x.toString();
+    }
+  }
 }
