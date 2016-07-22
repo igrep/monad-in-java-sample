@@ -6,7 +6,7 @@ public class StateSample1 {
     Monad<Void> builder =
       // 状態を取得して、次の関数に渡す。
       State.get()
-        // ↓渡された状態に処理を加え、書き戻す。
+        // ↓getから渡された状態に処理を加え、書き戻す。
         .then((currentString) -> State.put(currentString + "one!"))
         .then((_null /* どうせ State.put が返す（次の関数に渡す）値はnullなので無視する */) ->
           // ↓また状態を取得する。
