@@ -21,7 +21,7 @@ public class StateSample1 {
       // 初期値を渡すことで、初期値から書き換えていった結果が得られる
       // この場合 "zero! one!two!three!" と出力される
       // 本当はダウンキャストなんてしたくない...
-      ((State<String, Void>) builder).mutator.mutate("zero! ").newState
+      ((State<String, Void>) builder).mutator.apply("zero! ").newState
     );
   }
 }
