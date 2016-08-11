@@ -19,6 +19,7 @@ class Maybe<T1> implements Monad<T1> {
     }
   }
 
+  // サンプルコードの結果をわかりやすくするために追加しました。
   public String toString(){
     if (x == null) {
       return "Nothing";
