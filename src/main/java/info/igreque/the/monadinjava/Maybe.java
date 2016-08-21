@@ -19,6 +19,12 @@ class Maybe<T1> implements Monad<T1> {
     }
   }
 
+  public static class Return implements Monad.Return {
+    public <T> Maybe<T> doNothingReturning(T x){
+      return new Maybe<>(x);
+    }
+  }
+
   // サンプルコードの結果をわかりやすくするために追加しました。
   public String toString(){
     if (x == null) {

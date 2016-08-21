@@ -15,15 +15,15 @@ public class MaybeSample {
     someMap.put(key3, new Foo("foo3"));
 
     Foo maybeFoo1 = someMap.get(key1);
-    MaybeFactory f = new MaybeFactory();
+    Maybe.Return r = new Maybe.Return();
     // 本当は Maybe<Bar> と宣言したいが、コンパイルエラーになっちゃうorz
     Monad<Bar> bar =
-      f.doNothingReturning(maybeFoo1).then((foo1) -> {
+      r.doNothingReturning(maybeFoo1).then((foo1) -> {
         Foo maybeFoo2 = someMap.get(key2);
-        return f.doNothingReturning(maybeFoo2).then((foo2) -> {
+        return r.doNothingReturning(maybeFoo2).then((foo2) -> {
           Foo maybeFoo3 = someMap.get(key3);
-          return f.doNothingReturning(maybeFoo3).then((foo3) -> {
-            return f.doNothingReturning(foo1.doSomething(foo2, foo3));
+          return r.doNothingReturning(maybeFoo3).then((foo3) -> {
+            return r.doNothingReturning(foo1.doSomething(foo2, foo3));
           });
         });
       });
