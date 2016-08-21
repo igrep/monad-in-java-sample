@@ -22,6 +22,14 @@ class State<S, T1> implements Monad<T1> {
     return new State<>(composedMutator);
   }
 
+  public static class Return<S> implements Monad.Return {
+    public <T> State<S, T> doNothingReturning(T value){
+      return new State<>(
+        (nonMutatedState) -> new MutationResult<>(nonMutatedState, value)
+      );
+    }
+  }
+
   // 引数で与えた状態に書き換える
   public static <S> State<S, Void> put(S newState){
     Function<S, MutationResult<Void, S>> putter =
